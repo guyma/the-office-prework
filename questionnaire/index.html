@@ -14,7 +14,7 @@
     --bg: #f6f5fb;
     --ink: #16141f;
     --dim: #55506b;
-    --muted: #8f8aa4;
+    --muted: #6a6584;
     --line: #e7e5f0;
     --teal: #0d7d72;
     --violet: #6d4de0;
@@ -83,6 +83,9 @@
   .q-title .done-mark { font-size: 0.8rem; font-weight: 500; margin-inline-start: 6px; visibility: hidden; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .q.answered .q-title .done-mark { visibility: visible; }
   .q-hint { font-size: 0.88rem; color: var(--muted); margin-bottom: 10px; }
+  .radio-row { display: flex; gap: 12px; }
+  .radio-row label { flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 11px; background: #fbfbfd; border: 1px solid #dcd9e8; border-radius: 12px; font-weight: 700; cursor: pointer; }
+  .radio-row input { width: 18px; height: 18px; accent-color: var(--teal); }
   textarea {
     width: 100%; min-height: 96px; resize: vertical;
     font-family: var(--font-body); font-size: 1rem; line-height: 1.7; color: var(--ink);
@@ -137,7 +140,7 @@
 <div class="topbar">
   <div class="topbar-inner">
     <a class="brand" href="#top">העובד הראשון שלך</a>
-    <span class="progress-pill" id="progress-pill">0/12 שאלות נענו</span>
+    <span class="progress-pill" id="progress-pill" role="status" aria-live="polite">0/12 שאלות נענו</span>
   </div>
   <div class="progress-track"><div class="progress-bar" id="progress-bar"></div></div>
 </div>
@@ -211,6 +214,10 @@ const PARTS = [
     title: "חלק א' — אתם",
     intro: "כל עובד חדש צריך להכיר את הבוס. ספרו לו על עצמכם.",
     questions: [
+      { id: "q0", radio: true, title: "לשון פנייה: באיזו לשון לכתוב אליך ועליך?",
+        hint: "עברית היא שפה ממוגדרת. זה קובע איך העובד מנסח כל משפט אליך ועליך.",
+        options: ["לשון זכר", "לשון נקבה"],
+        md: "**לשון פנייה — באיזו לשון לכתוב אליך ועליך?**\nלשון זכר או לשון נקבה." },
       { id: "q1", title: "1. בפסקה אחת: מי אתם ומה אתם עושים?",
         hint: "שם, תפקיד, מה אתם נותנים ולמי. מה עובר רק דרככם, אילו החלטות רק אתם מקבלים. איך אתם עובדים: הרגלים, שעות, מה מעצבן אתכם. ועובדות שחשוב לכם שכל עובד ידע.",
         md: "**1. בפסקה אחת — מי אתם ומה אתם עושים?**\nשם, תפקיד, מה אתם נותנים ולמי. מה עובר רק דרככם — אילו החלטות רק אתם מקבלים.\nאיך אתם עובדים: הרגלים, שעות, מה מעצבן אתכם. ועובדות שחשוב לכם שכל עובד ידע." },
@@ -278,6 +285,7 @@ const PARTS = [
   },
   {
     title: "בונוס — המבחן (רשות)",
+    bonus: true,
     intro: "אפשר לדלג. אבל זה כיף.",
     questions: [
       { id: "q12", title: "12. כתבו 3 שאלות שעובד חדש חייב לדעת לענות עליהן.",
@@ -297,7 +305,7 @@ const PARTS = [
   }
 ];
 
-const COUNTED = 12; // q13 is a bonus free-text, not counted in progress
+const COUNTED = 12; // required: q0-q11; q12 (bonus) + q13 are optional, uncounted
 const store = window.localStorage;
 
 function el(tag, cls, html) {
@@ -325,14 +333,31 @@ function render() {
       const t = el("p", "q-title", q.title + ' <span class="done-mark">✔ נענתה</span>');
       wrap.appendChild(t);
       wrap.appendChild(el("p", "q-hint", q.hint));
-      const ta = document.createElement("textarea");
-      ta.id = q.id;
-      ta.value = store.getItem("misrad-" + q.id) || "";
-      ta.addEventListener("input", () => {
-        store.setItem("misrad-" + q.id, ta.value);
-        refresh();
-      });
-      wrap.appendChild(ta);
+      if (q.radio) {
+        const row = el("div", "radio-row");
+        row.setAttribute("role", "radiogroup");
+        row.setAttribute("aria-label", q.title);
+        q.options.forEach(opt => {
+          const lab = document.createElement("label");
+          const r = document.createElement("input");
+          r.type = "radio"; r.name = q.id; r.value = opt;
+          r.checked = store.getItem("misrad-" + q.id) === opt;
+          r.addEventListener("change", () => { store.setItem("misrad-" + q.id, opt); refresh(); });
+          lab.appendChild(r); lab.appendChild(document.createTextNode(opt));
+          row.appendChild(lab);
+        });
+        wrap.appendChild(row);
+      } else {
+        const ta = document.createElement("textarea");
+        ta.id = q.id;
+        ta.setAttribute("aria-label", q.title);
+        ta.value = store.getItem("misrad-" + q.id) || "";
+        ta.addEventListener("input", () => {
+          store.setItem("misrad-" + q.id, ta.value);
+          refresh();
+        });
+        wrap.appendChild(ta);
+      }
       card.appendChild(wrap);
     });
     root.appendChild(card);
@@ -353,10 +378,10 @@ function refresh() {
     part.questions.forEach(q => {
       const done = answered(q);
       document.getElementById("wrap-" + q.id).classList.toggle("answered", done);
-      if (done) { partDone++; if (q.id !== "q13") total++; }
+      if (done) { partDone++; if (q.id !== "q13" && q.id !== "q12") total++; }
     });
     const counter = document.querySelector('[data-part="' + part.title + '"]');
-    counter.textContent = part.optional
+    counter.textContent = (part.optional || part.bonus)
       ? (partDone ? "נענתה, תודה" : "רשות, אפשר לדלג")
       : "נענו " + partDone + " מתוך " + part.questions.length;
   });
@@ -403,7 +428,7 @@ function buildMarkdown() {
 
 function unansweredCount() {
   let n = 0;
-  PARTS.forEach(p => p.questions.forEach(q => { if (q.id !== "q13" && !answered(q)) n++; }));
+  PARTS.forEach(p => p.questions.forEach(q => { if (q.id !== "q13" && q.id !== "q12" && !answered(q)) n++; }));
   return n;
 }
 

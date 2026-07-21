@@ -14,7 +14,7 @@
     --bg: #f6f5fb;
     --ink: #16141f;
     --dim: #55506b;
-    --muted: #8f8aa4;
+    --muted: #6a6584;
     --line: #e7e5f0;
     --teal: #0d7d72;
     --violet: #6d4de0;
@@ -93,7 +93,7 @@
 <div class="topbar">
   <div class="topbar-inner">
     <a class="brand" href="#top">העובד הראשון שלך</a>
-    <span class="progress-pill" id="progress-pill">0/9 הושלמו</span>
+    <span class="progress-pill" id="progress-pill" role="status" aria-live="polite">0/9 הושלמו</span>
   </div>
   <div class="progress-track"><div class="progress-bar" id="progress-bar"></div></div>
 </div>
@@ -143,14 +143,13 @@
   <section class="card task">
     <div class="task-head"><div class="task-num">2</div><h2>מתקינים את Claude Code</h2><span class="time">כ-10 דקות</span></div>
     <div class="task-body">
-      <p>אפליקציה רגילה למחשב. בלי טרמינל, בלי קוד, ושום דבר נוסף להתקין.</p>
       <div class="os-toggle">
         <button type="button" class="os-btn" data-os="win">Windows</button>
         <button type="button" class="os-btn" data-os="mac">Mac</button>
       </div>
       <div class="os-block" data-block="win">
         <ul>
-          <li>מורידים מהעמוד הרשמי: <a href="https://claude.com/download" target="_blank" rel="noopener">claude.com/download</a>. אם מוצגות שתי גרסאות, בוחרים Windows רגיל, לא arm64.</li>
+          <li>מורידים מהעמוד הרשמי: <a href="https://claude.com/download" target="_blank" rel="noopener">claude.com/download</a></li>
           <li>מריצים את קובץ ההתקנה שירד ומחכים שיסיים. אם Windows מציג אזהרה על קובץ לא מוכר, זה בסדר: לוחצים More info ואז Run anyway. ההורדה מהאתר הרשמי בטוחה.</li>
           <li>פותחים את Claude מתפריט Start ומתחברים (Sign in) עם החשבון מהמשימה הקודמת. ההתחברות נפתחת בדפדפן, מאשרים וחוזרים לאפליקציה.</li>
           <li>בחלק העליון של האפליקציה יש שלוש לשוניות. לוחצים על <strong>Code</strong>. מוצע לכם שדרוג מנוי? חזרו למשימה 1. מתבקשים להתחבר שוב? מתחברים, סוגרים ופותחים את האפליקציה.</li>
@@ -174,8 +173,6 @@
   <section class="card task">
     <div class="task-head"><div class="task-num">3</div><h2>מתקינים את Obsidian</h2><span class="time">כ-5 דקות</span></div>
     <div class="task-body">
-      <p>Obsidian היא תוכנת מחברות חינמית. אצלנו היא החלון: דרכה רואים את הקבצים
-      שהעובד כותב בשבילכם.</p>
       <ul>
         <li>מורידים מ-<a href="https://obsidian.md" target="_blank" rel="noopener">obsidian.md</a> ומתקינים כרגיל.</li>
         <li>פותחים פעם אחת. זהו, את ההגדרה נעשה ביחד בסדנה.</li>
@@ -190,15 +187,13 @@
   <section class="card task">
     <div class="task-head"><div class="task-num">4</div><h2>מתקינים את Git</h2><span class="time">כ-3 דקות</span></div>
     <div class="task-body">
-      <p>Git שומר גרסאות של הקבצים, ו-Claude Code נשען עליו מאחורי הקלעים.</p>
       <div class="os-toggle">
         <button type="button" class="os-btn" data-os="win">Windows</button>
         <button type="button" class="os-btn" data-os="mac">Mac</button>
       </div>
       <div class="os-block" data-block="win">
         <ul>
-          <li>ב-Windows זו התקנת חובה: בלעדיה לשונית Code לא עובדת על התיקיות שלכם.</li>
-          <li>מורידים Git for Windows מהעמוד הרשמי: <a href="https://git-scm.com/downloads/win" target="_blank" rel="noopener">git-scm.com</a> (הקישור הראשון, 64-bit).</li>
+          <li>מורידים Git for Windows מהעמוד הרשמי: <a href="https://git-scm.com/downloads/win" target="_blank" rel="noopener">git-scm.com</a></li>
           <li>מריצים את ההתקנה. יופיעו הרבה מסכי אפשרויות, לוחצים Next בכולם. ברירות המחדל טובות.</li>
         </ul>
       </div>
@@ -218,12 +213,10 @@
   <section class="card task">
     <div class="task-head"><div class="task-num">5</div><h2>פותחים חשבון GitHub</h2><span class="time">כ-5 דקות</span></div>
     <div class="task-body">
-      <p>GitHub הוא הענן של עולם הקבצים: דרכו מגבים את המשרד, ובהמשך גם מקבלים
-      עדכונים וחומרים. החשבון חינמי.</p>
       <ul>
         <li>נכנסים אל <a href="https://github.com/signup" target="_blank" rel="noopener">github.com/signup</a> ונרשמים עם המייל שלכם.</li>
         <li>מאמתים את המייל (מגיע קוד לאישור).</li>
-        <li>שומרים את שם המשתמש והסיסמה במקום שתמצאו. נצטרך אותם בסדנה.</li>
+        <li>מוודאים שאתם מצליחים להתחבר גם אחרי סגירת הדפדפן (כולל אימות דו-שלבי אם הגדרתם). נצטרך את ההתחברות בסדנה.</li>
       </ul>
     </div>
     <div class="check-row">
@@ -235,7 +228,6 @@
   <section class="card task">
     <div class="task-head"><div class="task-num">6</div><h2>מוודאים שזום מוכן</h2><span class="time">כ-5 דקות</span></div>
     <div class="task-body">
-      <p>הסדנה חיה בזום, אז בודקים מראש שהכול עובד.</p>
       <ul>
         <li>אין זום במחשב? מורידים מ-<a href="https://zoom.us/download" target="_blank" rel="noopener">zoom.us/download</a> (הקישור הראשון) ומתקינים.</li>
         <li>נכנסים לפגישת הבדיקה של זום: <a href="https://zoom.us/test" target="_blank" rel="noopener">zoom.us/test</a>, מצטרפים, ובודקים מיקרופון ומצלמה.</li>
@@ -305,7 +297,7 @@
 
   <section class="card">
     <h2 class="sec">נתקעתם? הדברים הנפוצים</h2>
-    <div class="qa"><p class="q">קודם כול, שלושת התיקונים שפותרים כמעט הכול</p><p class="a">סוגרים ופותחים את Claude. פותחים סשן חדש בלשונית Code. סוגרים ופותחים את Obsidian.</p></div>
+    <div class="qa"><p class="q">קודם כול, התיקון שפותר כמעט הכול</p><p class="a">סוגרים ופותחים את Claude, ואם לא עזר, פותחים סשן חדש בלשונית Code. עדיין תקוע? אתחול מחשב מסדר את רוב השאר.</p></div>
     <div class="qa"><p class="q">Windows מזהיר על קובץ לא מוכר</p><p class="a">לוחצים More info ואז Run anyway. הורדתם מהאתר הרשמי, זה בטוח.</p></div>
     <div class="qa"><p class="q">ההתקנה מבקשת אישור מנהל</p><p class="a">מאשרים. אם זה מחשב של העבודה והוא חוסם, כתבו לי ונמצא פתרון.</p></div>
     <div class="qa"><p class="q">האינטרנט מסונן</p><p class="a">ההתקנה וההתחברות צריכות גישה חופשית לרשת. נסו רשת אחרת או נקודה חמה מהטלפון.</p></div>
@@ -315,17 +307,16 @@
 
   <section class="card">
     <h2 class="sec">שאלות ששואלים אותי</h2>
-    <div class="qa"><p class="q">אני לא טכני. אסתדר?</p><p class="a">כן. הכול אפליקציות רגילות, בלי טרמינל ובלי שורת קוד. וההתקנה היא פעם אחת.</p></div>
+    <div class="qa"><p class="q">אני לא טכני. אסתדר?</p><p class="a">כן. הכול אפליקציות רגילות ובלי שורת קוד, וההתקנה היא פעם אחת.</p></div>
     <div class="qa"><p class="q">כמה זה עולה?</p><p class="a">מנוי Claude מתחיל ב-20$ לחודש (Pro), וההמלצה למי שבא לעבוד ברצינות: Max. ‏Obsidian חינם.</p></div>
-    <div class="qa"><p class="q">מה קלוד רואה מהמחשב שלי?</p><p class="a">רק את התיקיות שאתם בוחרים לפתוח לו. לא שמים בהן סיסמאות או פרטי אשראי.</p></div>
     <div class="qa"><p class="q">אין לי דוגמאות כתיבה מסודרות</p><p class="a">תביאו מה שיש. גם שיחת וואטסאפ אחת שווה זהב. את השאר נשלים ביחד.</p></div>
-    <div class="qa"><p class="q">לא הספקתי הכול</p><p class="a">העיקר משימות 1 עד 7, בלעדיהן אי אפשר לבנות בסדנה. לא הספקתם את השאר? דברו איתי.</p></div>
+    <div class="qa"><p class="q">לא הספקתי הכול</p><p class="a">הכול פה חובה לפני הסדנה, ככה הזום הולך על בנייה ולא על התקנות. משהו לא הסתדר? כתבו לי ונפתור יחד.</p></div>
   </section>
 
   <section class="card support">
     <h2 class="sec">לא לבד</h2>
     <p>
-      לכל סדנה יש קבוצת וואטסאפ, הקישור מחכה לכם במייל ההרשמה.
+      לכל סדנה יש קבוצת וואטסאפ, את הקישור תקבלו ממני עם ההרשמה.
       לכל שאלה אחרת, <a href="https://wa.me/972503991358?text=%D7%94%D7%99%D7%99%20%D7%92%D7%99%D7%90%2C%20%D7%90%D7%A0%D7%99%20%D7%91%D7%94%D7%9B%D7%A0%D7%94%20%D7%9C%D7%A1%D7%93%D7%A0%D7%94%20%D7%95%D7%99%D7%A9%20%D7%9C%D7%99%20%D7%A9%D7%90%D7%9C%D7%94">כתבו לי בוואטסאפ</a>.
       והזום נפתח חצי שעה לפני הסדנה: מי שרוצה עזרה בהתקנות, בואו מוקדם ונסדר הכול ביחד.
     </p>
@@ -341,14 +332,15 @@ const store = window.localStorage;
 const TASKS = 9;
 
 function detectOS() {
-  const saved = store.getItem("misrad-prep-os");
-  if (saved) return saved;
-  return /Mac|iPhone|iPad/.test(navigator.userAgent) ? "mac" : "win";
+  return store.getItem("misrad-prep-os") || "win";
 }
 
 function setOS(os) {
   store.setItem("misrad-prep-os", os);
-  document.querySelectorAll(".os-btn").forEach(b => b.classList.toggle("active", b.dataset.os === os));
+  document.querySelectorAll(".os-btn").forEach(b => {
+    b.classList.toggle("active", b.dataset.os === os);
+    b.setAttribute("aria-pressed", b.dataset.os === os ? "true" : "false");
+  });
   document.querySelectorAll(".os-block").forEach(b => b.classList.toggle("show", b.dataset.block === os));
 }
 
