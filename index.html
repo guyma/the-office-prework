@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ההכנה לסדנה | העובד הראשון שלך</title>
-<meta name="description" content="שש משימות קצרות לפני הסדנה: מנוי, התקנות, בדיקה, שאלון ותיקיית דוגמאות. מגיעים מוכנים, בונים בזום.">
+<meta name="description" content="שבע משימות קצרות לפני הסדנה: מנוי, התקנות, בדיקה, שאלון ותיקיית דוגמאות. מגיעים מוכנים, בונים בזום.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -93,7 +93,7 @@
 <div class="topbar">
   <div class="topbar-inner">
     <a class="brand" href="#top">העובד הראשון שלך</a>
-    <span class="progress-pill" id="progress-pill">0/6 הושלמו</span>
+    <span class="progress-pill" id="progress-pill">0/7 הושלמו</span>
   </div>
   <div class="progress-track"><div class="progress-bar" id="progress-bar"></div></div>
 </div>
@@ -103,7 +103,7 @@
     <h1>מגיעים מוכנים לסדנה</h1>
     <div class="h1-underline"></div>
     <p class="hero-sub">
-      שש משימות קצרות לפני שנפגשים. כשהן מאחוריכם, שלוש השעות בזום הולכות
+      שבע משימות קצרות לפני שנפגשים. כשהן מאחוריכם, שלוש השעות בזום הולכות
       על בנייה, לא על התקנות. מסמנים כל משימה שהושלמה, והדף זוכר אתכם.
     </p>
   </section>
@@ -150,20 +150,22 @@
       <div class="os-block" data-block="win">
         <ul>
           <li>מורידים מהעמוד הרשמי: <a href="https://claude.com/download" target="_blank" rel="noopener">claude.com/download</a></li>
-          <li>מריצים את קובץ ההתקנה שירד. אם Windows מציג אזהרה על קובץ לא מוכר, זה בסדר: More info ואז Run anyway. ההורדה מהאתר הרשמי בטוחה.</li>
-          <li>פותחים את האפליקציה ומתחברים עם החשבון מהמשימה הקודמת.</li>
+          <li>מריצים את קובץ ההתקנה שירד ומחכים שיסיים. אם Windows מציג אזהרה על קובץ לא מוכר, זה בסדר: לוחצים More info ואז Run anyway. ההורדה מהאתר הרשמי בטוחה.</li>
+          <li>פותחים את Claude מתפריט Start ומתחברים (Sign in) עם החשבון מהמשימה הקודמת. ההתחברות נפתחת בדפדפן, מאשרים וחוזרים לאפליקציה.</li>
+          <li>בחלק העליון של האפליקציה יש שלוש לשוניות. לוחצים על <strong>Code</strong>. מוצע לכם שדרוג מנוי? חזרו למשימה 1. מתבקשים להתחבר שוב? מתחברים, סוגרים ופותחים את האפליקציה.</li>
         </ul>
       </div>
       <div class="os-block" data-block="mac">
         <ul>
           <li>מורידים את הקובץ למק: <a href="https://claude.ai/api/desktop/darwin/universal/dmg/latest/redirect" target="_blank" rel="noopener">הורדה ישירה (dmg)</a></li>
-          <li>פותחים את הקובץ וגוררים את האפליקציה לתיקיית היישומים (Applications).</li>
-          <li>פותחים את האפליקציה ומתחברים עם החשבון מהמשימה הקודמת.</li>
+          <li>פותחים את הקובץ שירד וגוררים את Claude לתיקיית היישומים (Applications).</li>
+          <li>פותחים את Claude מתיקיית היישומים ומתחברים (Sign in) עם החשבון מהמשימה הקודמת. ההתחברות נפתחת בדפדפן, מאשרים וחוזרים לאפליקציה.</li>
+          <li>בחלק העליון של האפליקציה יש שלוש לשוניות. לוחצים על <strong>Code</strong>. מוצע לכם שדרוג מנוי? חזרו למשימה 1. מתבקשים להתחבר שוב? מתחברים, סוגרים ופותחים את האפליקציה.</li>
         </ul>
       </div>
     </div>
     <div class="check-row">
-      <p class="how">איך יודעים שעבד: האפליקציה נפתחת, ואתם מחוברים עם החשבון שלכם.</p>
+      <p class="how">איך יודעים שעבד: לשונית Code נפתחת בלי בקשת שדרוג.</p>
       <label><input type="checkbox" data-task="2"><span>Claude Code מותקן ומחובר</span></label>
     </div>
   </section>
@@ -184,30 +186,59 @@
     </div>
   </section>
 
+  <section class="card task">
+    <div class="task-head"><div class="task-num">4</div><h2>מתקינים את Git</h2><span class="time">כ-3 דקות</span></div>
+    <div class="task-body">
+      <p>Git שומר גרסאות של הקבצים, ו-Claude Code נשען עליו מאחורי הקלעים.</p>
+      <div class="os-toggle">
+        <button type="button" class="os-btn" data-os="win">Windows</button>
+        <button type="button" class="os-btn" data-os="mac">Mac</button>
+      </div>
+      <div class="os-block" data-block="win">
+        <ul>
+          <li>ב-Windows זו התקנת חובה: בלעדיה לשונית Code לא עובדת על התיקיות שלכם.</li>
+          <li>מורידים Git for Windows מהעמוד הרשמי: <a href="https://git-scm.com/downloads/win" target="_blank" rel="noopener">git-scm.com</a> (הקישור הראשון, 64-bit).</li>
+          <li>מריצים את ההתקנה. יופיעו הרבה מסכי אפשרויות, לוחצים Next בכולם. ברירות המחדל טובות.</li>
+        </ul>
+      </div>
+      <div class="os-block" data-block="mac">
+        <ul>
+          <li>ברוב מחשבי המק Git כבר מגיע מובנה, אז קודם בודקים: פותחים את אפליקציית Terminal (מחפשים ב-Spotlight), מקלידים git --version ולוחצים Enter.</li>
+          <li>הופיע מספר גרסה? מותקן, סיימתם. קפץ חלון שמציע להתקין? לוחצים Install ומחכים שיסיים.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="check-row">
+      <p class="how">איך יודעים שעבד: ב-Windows, בתפריט Start מופיע Git. במק, git --version מציג מספר גרסה.</p>
+      <label><input type="checkbox" data-task="4"><span>Git מותקן</span></label>
+    </div>
+  </section>
+
   <div class="phase"><span>שלב ב׳: בדיקה שהכול עובד</span></div>
 
   <section class="card task">
-    <div class="task-head"><div class="task-num">4</div><h2>הבדיקה</h2><span class="time">כ-5 דקות</span></div>
+    <div class="task-head"><div class="task-num">5</div><h2>הבדיקה</h2><span class="time">כ-5 דקות</span></div>
     <div class="task-body">
-      <p>עכשיו הרגע הראשון שלכם עם העובד. שלוש דקות, בלי להתחייב:</p>
+      <p>עכשיו הרגע הראשון שלכם עם העובד. חמש דקות, בלי להתחייב:</p>
       <ul>
         <li>יוצרים במחשב תיקייה חדשה וריקה, קוראים לה test.</li>
-        <li>פותחים את Claude Code ובוחרים את התיקייה הזו.</li>
-        <li>כותבים לו: צור קובץ בשם hello.md ובתוכו ברכת שלום קצרה בעברית.</li>
+        <li>פותחים את Claude, נכנסים ללשונית Code, בוחרים <strong>Local</strong>, לוחצים <strong>Select folder</strong> ובוחרים את התיקייה.</li>
+        <li>כותבים בתיבה: צור קובץ בשם hello.md ובתוכו ברכת שלום קצרה בעברית.</li>
+        <li>קלוד יציג את מה שהוא רוצה לכתוב ויחכה לאישור שלכם. זה לא באג, ככה עובדים איתו: לוחצים <strong>Accept</strong>.</li>
         <li>פותחים את התיקייה ובודקים: נוצר קובץ? פתחו אותו.</li>
       </ul>
       <p style="margin-top:8px;">רואים את הברכה? המערכת שלכם עובדת. זה, בגדול, בדיוק מה שנעשה בסדנה, רק על העסק שלכם.</p>
     </div>
     <div class="check-row">
       <p class="how">איך יודעים שעבד: קובץ hello.md קיים בתיקייה ויש בו טקסט.</p>
-      <label><input type="checkbox" data-task="4"><span>הבדיקה עברה</span></label>
+      <label><input type="checkbox" data-task="5"><span>הבדיקה עברה</span></label>
     </div>
   </section>
 
   <div class="phase"><span>שלב ג׳: העסק שלכם</span></div>
 
   <section class="card task">
-    <div class="task-head"><div class="task-num">5</div><h2>שאלון ההקמה</h2><span class="time">בקצב שלכם</span></div>
+    <div class="task-head"><div class="task-num">6</div><h2>שאלון ההקמה</h2><span class="time">בקצב שלכם</span></div>
     <div class="task-body">
       <p>עונים על שאלון קצר על העסק, ובסוף מורידים קובץ מוכן. שומרים אותו במקום
       שקל למצוא, ומביאים לסדנה. משם העובד יכיר אתכם.</p>
@@ -215,12 +246,12 @@
     </div>
     <div class="check-row">
       <p class="how">איך יודעים שעבד: הקובץ my-business-he.md שמור אצלכם.</p>
-      <label><input type="checkbox" data-task="5"><span>השאלון מולא והקובץ אצלי</span></label>
+      <label><input type="checkbox" data-task="6"><span>השאלון מולא והקובץ אצלי</span></label>
     </div>
   </section>
 
   <section class="card task">
-    <div class="task-head"><div class="task-num">6</div><h2>תיקיית הדוגמאות</h2><span class="time">כ-15 דקות</span></div>
+    <div class="task-head"><div class="task-num">7</div><h2>תיקיית הדוגמאות</h2><span class="time">כ-15 דקות</span></div>
     <div class="task-body">
       <p>פותחים תיקייה אחת במחשב ואוספים אליה כל דבר שאתם כתבתם. מהדוגמאות האלה
       העובד לומד את הקול שלכם. לפחות 3, אין תקרה:</p>
@@ -235,7 +266,7 @@
     </div>
     <div class="check-row">
       <p class="how">איך יודעים שעבד: יש תיקייה, ויש בה לפחות 3 דברים.</p>
-      <label><input type="checkbox" data-task="6"><span>תיקיית הדוגמאות מוכנה</span></label>
+      <label><input type="checkbox" data-task="7"><span>תיקיית הדוגמאות מוכנה</span></label>
     </div>
   </section>
 
@@ -244,6 +275,7 @@
     <div class="qa"><p class="q">Windows מזהיר על קובץ לא מוכר</p><p class="a">לוחצים More info ואז Run anyway. הורדתם מהאתר הרשמי, זה בטוח.</p></div>
     <div class="qa"><p class="q">ההתקנה מבקשת אישור מנהל</p><p class="a">מאשרים. אם זה מחשב של העבודה והוא חוסם, כתבו לי ונמצא פתרון.</p></div>
     <div class="qa"><p class="q">האינטרנט מסונן</p><p class="a">ההתקנה וההתחברות צריכות גישה חופשית לרשת. נסו רשת אחרת או נקודה חמה מהטלפון.</p></div>
+    <div class="qa"><p class="q">לוחצים על Code ומקבלים הצעה לשדרג</p><p class="a">סימן שהחשבון עוד לא בתשלום. חוזרים למשימה 1, משדרגים, ופותחים את האפליקציה מחדש.</p></div>
     <div class="qa"><p class="q">משהו אחר לא מסתדר</p><p class="a">כותבים בקבוצת הוואטסאפ או ישירות אליי. ואם לא הסתדר עד הסדנה, עולים לזום חצי שעה לפני ופותרים ביחד.</p></div>
   </section>
 
@@ -253,7 +285,7 @@
     <div class="qa"><p class="q">כמה זה עולה?</p><p class="a">מנוי Claude מתחיל ב-20$ לחודש (Pro), וההמלצה למי שבא לעבוד ברצינות: Max. ‏Obsidian חינם.</p></div>
     <div class="qa"><p class="q">מה קלוד רואה מהמחשב שלי?</p><p class="a">רק את התיקיות שאתם בוחרים לפתוח לו. לא שמים בהן סיסמאות או פרטי אשראי.</p></div>
     <div class="qa"><p class="q">אין לי דוגמאות כתיבה מסודרות</p><p class="a">תביאו מה שיש. גם שיחת וואטסאפ אחת שווה זהב. את השאר נשלים ביחד.</p></div>
-    <div class="qa"><p class="q">לא הספקתי הכול</p><p class="a">העיקר משימות 1 עד 4, בלעדיהן אי אפשר לבנות בסדנה. לא הספקתם את השאר? דברו איתי.</p></div>
+    <div class="qa"><p class="q">לא הספקתי הכול</p><p class="a">העיקר משימות 1 עד 5, בלעדיהן אי אפשר לבנות בסדנה. לא הספקתם את השאר? דברו איתי.</p></div>
   </section>
 
   <section class="card support">
@@ -272,7 +304,7 @@
 
 <script>
 const store = window.localStorage;
-const TASKS = 6;
+const TASKS = 7;
 
 function detectOS() {
   const saved = store.getItem("misrad-prep-os");
@@ -290,7 +322,7 @@ function refresh() {
   let done = 0;
   document.querySelectorAll("input[data-task]").forEach(c => { if (c.checked) done++; });
   const pill = document.getElementById("progress-pill");
-  pill.textContent = done === TASKS ? "6/6 מוכנים לסדנה ✔" : done + "/" + TASKS + " הושלמו";
+  pill.textContent = done === TASKS ? "7/7 מוכנים לסדנה ✔" : done + "/" + TASKS + " הושלמו";
   document.getElementById("progress-bar").style.width = (done / TASKS * 100) + "%";
 }
 
