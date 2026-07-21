@@ -119,6 +119,13 @@
   code { direction: ltr; unicode-bidi: embed; background: #efedf7; border-radius: 6px; padding: 1px 7px; font-size: 0.9em; }
 
   .fineprint { font-size: 0.92rem; color: var(--dim); }
+  .samples-check {
+    display: flex; align-items: center; gap: 10px;
+    margin-top: 16px; padding: 13px 14px; cursor: pointer;
+    background: #fbfbfd; border: 1px solid #dcd9e8; border-radius: 12px;
+    font-weight: 700; color: var(--ink); font-size: 1rem;
+  }
+  .samples-check input { width: 20px; height: 20px; accent-color: var(--teal); flex-shrink: 0; }
   .fineprint strong { color: var(--ink); }
 
   footer { text-align: center; padding: 16px 18px 44px; color: var(--muted); font-size: 0.9rem; }
@@ -151,21 +158,6 @@
 
   <div id="form-root"></div>
 
-  <section class="card actions">
-    <button class="btn btn-primary" id="btn-download">להוריד את הקובץ המוכן</button>
-    <button class="btn btn-secondary" id="btn-copy">להעתיק את הקובץ ללוח</button>
-    <p class="action-note" id="action-note"></p>
-  </section>
-
-  <section class="card">
-    <h2 class="part-title">מה עושים עם הקובץ?</h2>
-    <ol class="steps">
-      <li>מורידים את הקובץ <code>my-business-he.md</code> מהכפתור למעלה.</li>
-      <li>שומרים אותו במקום שקל למצוא, למשל שולחן העבודה.</li>
-      <li>מביאים אותו לסדנה. שם העובד החדש שלכם יקרא אותו ויכיר אתכם.</li>
-    </ol>
-  </section>
-
   <section class="card fineprint">
     <p><strong>ועוד הכנה אחת, חשובה באמת: אספו דוגמאות כתיבה שלכם.</strong></p>
     <p style="margin-top:8px;">
@@ -186,7 +178,27 @@
     <p style="margin-top:10px;">
       לא צריך לסדר כלום ולא צריך לשנות כלום. אוספים, ובסדנה נלמד את העובד מהכול.
     </p>
+    <label class="samples-check">
+      <input type="checkbox" id="samples-done">
+      <span>הכנתי תיקיית דוגמאות, הכול בפנים</span>
+    </label>
   </section>
+
+  <section class="card actions">
+    <button class="btn btn-primary" id="btn-download">להוריד את הקובץ המוכן</button>
+    <button class="btn btn-secondary" id="btn-copy">להעתיק את הקובץ ללוח</button>
+    <p class="action-note" id="action-note"></p>
+  </section>
+
+  <section class="card">
+    <h2 class="part-title">מה עושים עם הקובץ?</h2>
+    <ol class="steps">
+      <li>מורידים את הקובץ <code>my-business-he.md</code> מהכפתור למעלה.</li>
+      <li>שומרים אותו במקום שקל למצוא, למשל שולחן העבודה.</li>
+      <li>מביאים אותו לסדנה. שם העובד החדש שלכם יקרא אותו ויכיר אתכם.</li>
+    </ol>
+  </section>
+
 </main>
 
 <footer>
@@ -332,6 +344,8 @@ function answered(q) {
   return (store.getItem("misrad-" + q.id) || "").trim().length > 0;
 }
 
+function samplesDone() { return store.getItem("misrad-samples-done") === "1"; }
+
 function refresh() {
   let total = 0;
   PARTS.forEach(part => {
@@ -346,8 +360,9 @@ function refresh() {
       ? (partDone ? "נענתה, תודה" : "רשות, אפשר לדלג")
       : "נענו " + partDone + " מתוך " + part.questions.length;
   });
-  document.getElementById("progress-pill").textContent = total + "/" + COUNTED + " שאלות נענו";
-  document.getElementById("progress-bar").style.width = (total / COUNTED * 100) + "%";
+  const done = total + (samplesDone() ? 1 : 0);
+  document.getElementById("progress-pill").textContent = done + "/" + (COUNTED + 1) + " הושלמו";
+  document.getElementById("progress-bar").style.width = (done / (COUNTED + 1) * 100) + "%";
 }
 
 function buildMarkdown() {
@@ -397,6 +412,13 @@ function note(msg) { document.getElementById("action-note").textContent = msg; }
 document.addEventListener("DOMContentLoaded", () => {
   render();
 
+  const chk = document.getElementById("samples-done");
+  chk.checked = samplesDone();
+  chk.addEventListener("change", () => {
+    store.setItem("misrad-samples-done", chk.checked ? "1" : "0");
+    refresh();
+  });
+
   document.getElementById("btn-download").addEventListener("click", () => {
     const missing = unansweredCount();
     const blob = new Blob([buildMarkdown()], { type: "text/markdown;charset=utf-8" });
@@ -405,9 +427,11 @@ document.addEventListener("DOMContentLoaded", () => {
     a.download = "my-business-he.md";
     a.click();
     URL.revokeObjectURL(a.href);
-    note(missing
+    let msg = missing
       ? "הקובץ ירד. נשארו " + missing + " שאלות פתוחות, אפשר להשלים אותן ישירות בקובץ."
-      : "הקובץ ירד. כל השאלות נענו, העובד הולך להכיר אתכם טוב.");
+      : "הקובץ ירד. כל השאלות נענו, העובד הולך להכיר אתכם טוב.";
+    if (!samplesDone()) msg += " ואל תשכחו: תיקיית הדוגמאות.";
+    note(msg);
   });
 
   document.getElementById("btn-copy").addEventListener("click", async () => {
