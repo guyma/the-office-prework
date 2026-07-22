@@ -140,7 +140,7 @@
 <div class="topbar">
   <div class="topbar-inner">
     <a class="brand" href="#top">העובד הראשון שלך</a>
-    <span class="progress-pill" id="progress-pill" role="status" aria-live="polite">0/12 שאלות נענו</span>
+    <span class="progress-pill" id="progress-pill" role="status" aria-live="polite">0/13 הושלמו</span>
   </div>
   <div class="progress-track"><div class="progress-bar" id="progress-bar"></div></div>
 </div>
@@ -180,6 +180,7 @@
     </p>
     <p style="margin-top:10px;">
       לא צריך לסדר כלום ולא צריך לשנות כלום. אוספים, ובסדנה נלמד את העובד מהכול.
+      שם או פרט רגיש שלא צריך לחיות בקובץ? מחליפים ל-[שם] כבר עכשיו, בזמן האיסוף.
     </p>
     <label class="samples-check">
       <input type="checkbox" id="samples-done">
@@ -190,7 +191,7 @@
   <section class="card actions">
     <button class="btn btn-primary" id="btn-download">להוריד את הקובץ המוכן</button>
     <button class="btn btn-secondary" id="btn-copy">להעתיק את הקובץ ללוח</button>
-    <p class="action-note" id="action-note"></p>
+    <p class="action-note" id="action-note" role="status" aria-live="polite"></p>
   </section>
 
   <section class="card">
@@ -386,7 +387,9 @@ function refresh() {
       : "נענו " + partDone + " מתוך " + part.questions.length;
   });
   const done = total + (samplesDone() ? 1 : 0);
-  document.getElementById("progress-pill").textContent = done + "/" + (COUNTED + 1) + " הושלמו";
+  const pill = document.getElementById("progress-pill");
+  const txt = done + "/" + (COUNTED + 1) + " הושלמו";
+  if (pill.textContent !== txt) pill.textContent = txt;
   document.getElementById("progress-bar").style.width = (done / (COUNTED + 1) * 100) + "%";
 }
 
